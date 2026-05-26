@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: taller-app-rs
+  labels:
+    app: taller-app
+    managed-by: replicaset
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: taller-app
+      managed-by: replicaset
+  template:
+    metadata:
+      labels:
+        app: taller-app
+        managed-by: replicaset
+    spec:
+      containers:
+        - name: taller-app
+          image: taller-app:1.0.0
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5000
+          env:
+            - name: APP_VERSION
+              value: "1.0.0"

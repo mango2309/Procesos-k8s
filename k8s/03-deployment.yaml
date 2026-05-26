@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taller-app-deploy
+  labels:
+    app: taller-app
+    managed-by: deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: taller-app
+      managed-by: deployment
+  template:
+    metadata:
+      labels:
+        app: taller-app
+        managed-by: deployment
+    spec:
+      containers:
+        - name: taller-app
+          image: taller-app:1.0.0
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5000
+          env:
+            - name: APP_VERSION
+              value: "1.0.0"
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "64Mi"
+            limits:
+              cpu: "200m"
+              memory: "128Mi"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 2
+            periodSeconds: 5
+            timeoutSeconds: 2
+            failureThreshold: 3

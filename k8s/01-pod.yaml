@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: taller-app-pod
+  labels:
+    app: taller-app
+    managed-by: pod
+spec:
+  containers:
+    - name: taller-app
+      image: taller-app:1.0.0
+      imagePullPolicy: Never
+      ports:
+        - containerPort: 5000
+      env:
+        - name: APP_VERSION
+          value: "1.0.0"
