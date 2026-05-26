@@ -1,4 +1,4 @@
-# mi-proyecto-k8s (Flask + Docker + Kubernetes en Minikube)
+# Proyecto Procesos k8s (Flask + Docker + Kubernetes en Minikube)
 
 Proyecto de despliegue en Kubernetes (Minikube) siguiendo el enfoque tipico de laboratorios: construir imagen Docker localmente dentro del daemon de Minikube, y desplegar progresivamente con `Pod -> ReplicaSet -> Deployment + Service`.
 
